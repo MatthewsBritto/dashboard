@@ -1,10 +1,13 @@
 import './App.css'
 import Container from './components/Container'
+import AppProvider from './hooks';
 
 
 function App() {
   return (
-   <Container/>
+    <AppProvider>
+      <Container/>
+    </AppProvider>
   )
 }
 

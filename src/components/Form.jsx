@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { useGlobal } from "../hooks/global";
 
 
 function Form() {
@@ -6,6 +7,7 @@ function Form() {
     const [text , setText ]= useState([""]);
     const [name, setName ]= useState("")
     
+    const { updateUsername } = useGlobal()
     function hadleChange(event){
         
         let t = event.target.value;
@@ -16,7 +18,7 @@ function Form() {
     function getName(event) {
 
         setName(text);
-        localStorage.setItem('user',text);
+        updateUsername(text);
         setText("")   
     }
 
