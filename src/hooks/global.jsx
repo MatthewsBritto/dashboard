@@ -15,12 +15,14 @@ const GlobalProvider = ({ children }) => {
    });  
 
    const [username, setUsername] = useState(() => {
-      const user = localStorage.getItem('@Dashboard:username');
+      const user = localStorage.getItem('@Dashboard:data'.name);
       if (user) {
          return user 
       }
       return '' ;
    });
+
+   const [mains,setMains] = useState([])
 
   const updateData = useCallback(
     (data) => {
@@ -30,28 +32,46 @@ const GlobalProvider = ({ children }) => {
     },
     [],
   );  
-  
+
   const updateUsername = useCallback(
     (name) => {
 
-      localStorage.setItem('@Dashboard:username', name);
       setUsername(name)
       
     },[],);
     
-    const getName =  useCallback(()=>{
+    const getUser =  useCallback(()=>{
 
+      axios.get('https://br1.api.riotgames.com/lol/summoner/v4/summoners/by-name/shazam%20kraiu?api_key=RGAPI-51f9d132-2254-4183-ac83-57c14e0b0972')
+      .then((res)=>{
+       var infos =  res.data
+       updateData(infos)
+       console.log(infos)
       
-      axios.get(process.env.REACT_APP_BASE+ name ,{
-        params: {
-          'X-Riot-Token' : process.env.REACT_APP_KEY
-        }
-      }).then(console.log(data))
+      })
     })
+
+    const getUserInfo = useCallback(()=>{
+      axios.get('https://br1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/DT4xAg8YCEWfj8x0O4jGkRWueDTSOiyJyLvaht7XeKBP2Tg/top?count=3&api_key=RGAPI-51f9d132-2254-4183-ac83-57c14e0b0972')
+      .then((res)=>{
+        var mainInfos = res.data
+
+        var mainsId = []
+
+        for(let i = 0; i < mainInfos.length; i++) {
+
+          mainsId.push(mainInfos[i].championId)
+        }
+
+        return setMains(mainsId)
+      })
+    })
+
+
 
   return (
     <GlobalContext.Provider
-      value={{ data, username, updateUsername,updateData }}
+      value={{ data, updateUsername,updateData, getUser, getUserInfo, mains }}
     >
       {children}
     </GlobalContext.Provider>

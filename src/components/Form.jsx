@@ -5,9 +5,11 @@ import { useGlobal } from "../hooks/global";
 function Form() {
     
     const [text , setText ]= useState([""]);
-    const [name, setName ]= useState("")
+    const [name, setName ]= useState("");
+
     
-    const { updateUsername } = useGlobal()
+    const { updateUsername, getUserInfo } = useGlobal();
+
     function hadleChange(event){
         
         let t = event.target.value;
@@ -16,10 +18,10 @@ function Form() {
     }
     
     function getName(event) {
-
         setName(text);
         updateUsername(text);
         setText("")   
+        getUserInfo()
     }
 
     return  (

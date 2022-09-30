@@ -1,10 +1,15 @@
+import { useGlobal } from "../hooks/global";
+
+
 
 function MainCard(){
+
+    const {mains} = useGlobal();
     return(
         <div className='main__Card marginDefault'>
             <div className='mainInf'>
             <div className='mainName'>
-                <h3>Main Champion</h3>
+                <h3>{mains[0]}</h3>
                 <h2>Yasuo</h2>
             </div>
             <ul>

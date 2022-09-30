@@ -6,16 +6,16 @@ import { useGlobal } from "../hooks/global";
 
 
 function User() {
-    const {username} = useGlobal()
+    const {data} = useGlobal()
 
     return (
         <div className='user'>
             <div className='userIcon'>
-                {/* {infos.profileIconId} */}
+                {data.summonerLevel}
             </div>
-            {username && <h3 className="nameUser">{username}</h3>} 
+            {data && <h3 className="nameUser">{data.name}</h3>} 
             
-            {!username && <h3 className="nameUser">sem nome</h3>}
+            {!data && <h3 className="nameUser">sem nome</h3>}
           
         </div>
     )
