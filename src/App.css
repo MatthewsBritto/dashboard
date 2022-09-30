@@ -188,7 +188,7 @@ header .links li{
   height: 60px;
   background: var(--Card-color2);
   position: fixed;
-  bottom: 500px;
+  bottom: 827px;
   right: 15vw;
   border-radius: 15px;
   box-shadow: var(--Shadow-default2);
@@ -213,8 +213,8 @@ header .links li{
   flex-direction: column;
   justify-content: space-between;
   position: fixed;
-  bottom: 437px;
-  left: 1164px;
+  bottom: 425px;
+  right: 15vw;
   width: 18.5%;
   height: 40%;
   text-align: center;
@@ -240,11 +240,11 @@ header .links li{
 
 .favPosition{
   width: 18.5%;
-  height: 374.8px;
+  height: 360px;
   background: var(--Card-color2);
   position: fixed;
   bottom: 22px;
-  left: 1164px;
+  right: 15vw;
   border-radius: 15px;
   text-align: center;
   display: flex;

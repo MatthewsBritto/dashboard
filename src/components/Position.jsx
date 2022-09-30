@@ -10,7 +10,7 @@ function Position(){
             </div>
             <div className="descPosi">
                 <h3>
-                    suporte
+                    
                 </h3>
             </div>
         </div>

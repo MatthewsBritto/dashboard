@@ -1,6 +1,9 @@
+import axios from 'axios';
 import React, { createContext, useCallback, useState, useContext } from 'react';
 
-const GlolbalContext = createContext({});
+
+
+const GlobalContext = createContext({});
 
 const GlobalProvider = ({ children }) => {
    const [data, setData] = useState(() => {
@@ -21,6 +24,7 @@ const GlobalProvider = ({ children }) => {
 
   const updateData = useCallback(
     (data) => {
+     
       localStorage.setItem('@Dashboard:data', JSON.stringify(data));
       setData(data);
     },
@@ -29,23 +33,33 @@ const GlobalProvider = ({ children }) => {
   
   const updateUsername = useCallback(
     (name) => {
+
       localStorage.setItem('@Dashboard:username', name);
-      setUsername(name);
-    },
-    [],
-  );
+      setUsername(name)
+      
+    },[],);
+    
+    const getName =  useCallback(()=>{
+
+      
+      axios.get(process.env.REACT_APP_BASE+ name ,{
+        params: {
+          'X-Riot-Token' : process.env.REACT_APP_KEY
+        }
+      }).then(console.log(data))
+    })
 
   return (
-    <GlolbalContext.Provider
+    <GlobalContext.Provider
       value={{ data, username, updateUsername,updateData }}
     >
       {children}
-    </GlolbalContext.Provider>
+    </GlobalContext.Provider>
   );
 };
 
 function useGlobal() {
-  const context = useContext(GlolbalContext);
+  const context = useContext(GlobalContext);
   if (!context) {
     throw new Error('useGlobal must be used within an GlobalProvider');
   }

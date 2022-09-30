@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { useGlobal } from "../hooks/global";
 
 
-const KEY = 'RGAPI-3daf5071-b4ac-4793-a5cd-68a70ff54c62'; 
 
 
 function User() {
